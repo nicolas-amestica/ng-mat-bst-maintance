@@ -1,27 +1,16 @@
-# NgMatBstMaintance
+# BST-MAINTANCES
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.5.
+Este proyecto está generado con [Angular CLI](https://github.com/angular/angular-cli) version 10.0.5.
 
-## Development server
+## Descargar proyecto
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Cuando se descargue el rpyecto de correr `npm install` para descargar todos los módulos necesarios.
 
-## Code scaffolding
+## Configuración proyecto
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Cuando haya descargado el proyecto debe completar el archivo de variables de entorno tal cual se indica en el ejemplo, además debe quitar la palabra `ejemplo` del mismo.
+Ese archivo contiene las URL de las API y las APIKey de amazon web services.
 
-## Build
+## Iniciar proyecto
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Inicia el proyecto `ng serve` para un servidor de desarrollo. Navega a `http://localhost:4200/`. La aplicación de refrescará autompaticamente cuando hagas modificación del código.
