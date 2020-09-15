@@ -1,0 +1,13 @@
+.example-card {
+    margin-bottom: 15px;
+}
+
+::ng-deep .mat-snack-bar-container {
+    color: white !important;
+    background-color: #5163C5 !important;
+    border-color: #5163C5 !important;
+}
+
+ ::ng-deep .mat-simple-snackbar-action {
+    color: yellow;
+}

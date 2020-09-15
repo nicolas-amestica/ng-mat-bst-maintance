@@ -1,0 +1,25 @@
+img {
+    max-width: 100%;
+    border-radius: 50%;
+}
+
+.example-full-width {
+    width: 100%;
+}
+
+.mainDiv {
+    position: relative;
+}
+
+#add-button {
+    margin-top: 20px;
+    right: 20px;
+    bottom: 10px;
+    left: auto;
+    position: relative;
+}
+
+.foto {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

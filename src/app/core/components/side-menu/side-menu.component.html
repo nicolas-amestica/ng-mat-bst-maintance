@@ -1,0 +1,80 @@
+<div class="example-container" color="primary">
+    <mat-toolbar color="primary" class="example-toolbar animated fadeIn fast" *ngIf="isLogged">
+        <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+        <a routerLink="/home" style="text-decoration: none; color: white">{{ TITULO_TOOLBAR }}</a>
+        <span class="example-spacer"></span>
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+        <mat-menu #menu="matMenu" xPosition="before">
+            <button mat-menu-item (click)="miInformacion()">
+                <mat-icon>perm_contact_calendar </mat-icon>
+                <span>Mi Información</span>
+            </button>
+            <button mat-menu-item (click)="snav.toggle(false) && salir()">
+              <mat-icon>exit_to_app</mat-icon>
+              <span>Cerrar sesión</span>
+            </button>
+        </mat-menu>
+    </mat-toolbar>
+
+    <mat-sidenav-container class="example-sidenav-container">
+        <mat-sidenav #snav mode='push'>
+
+            <div class="profile-picture">
+                <a routerLink="/home" style="text-decoration: none; color: white">
+                    <img class="img-perfil" mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="imagen">
+                </a>
+            </div>
+            <div class="stats-label text-center">
+                <span class="font-extra-bold text-center"></span>
+            </div>
+            <div class="stats-label text-center">
+                <button mat-button [matMenuTriggerFor]="menu" class="btn-block">Mis Datos</button>
+                <mat-menu #menu="matMenu" xPosition="after">
+                    <button mat-menu-item (click)="miInformacion()">
+                        <mat-icon>perm_contact_calendar </mat-icon>
+                        <span>Mi Información</span>
+                    </button>
+                    <button mat-menu-item (click)="snav.toggle(false) && salir()">
+                        <mat-icon>exit_to_app </mat-icon>
+                        <span>Cerrar Sesión</span>
+                    </button>
+                </mat-menu>
+            </div>
+
+
+            <mat-accordion class="animated fadeIn">
+                <mat-expansion-panel *ngFor="let perfil of perfiles">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <mat-icon>{{ perfil.icon }}</mat-icon>
+                        </mat-panel-title>
+
+                        <mat-panel-description>
+                            {{ perfil.name | uppercase }}
+                        </mat-panel-description>
+
+                    </mat-expansion-panel-header>
+
+                    <mat-nav-list>
+                        <mat-list-item class="espaciado" *ngFor="let servicio of perfil.servicios" [routerLink]="servicio.ruta">
+                            <a matLine>{{ servicio.name }}</a>
+                            <span [matBadge]="servicio.total" matBadgeSize="small" matBadgeColor="warn"></span>
+                        </mat-list-item>
+                    </mat-nav-list>
+
+                </mat-expansion-panel>
+
+            </mat-accordion>
+
+        </mat-sidenav>
+
+        <mat-sidenav-content>
+            <div class="container" layout="row">
+                <router-outlet></router-outlet>
+            </div>
+            <app-footer></app-footer>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>

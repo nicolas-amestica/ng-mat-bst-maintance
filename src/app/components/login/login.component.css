@@ -1,0 +1,41 @@
+.card {
+    max-width: 400px;
+}
+
+.example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+}
+
+.center {
+    width: 75%;
+    margin: 10px auto;
+}
+
+.main-div {
+    height: 85vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.BTN_LOGIN {
+    margin-bottom: 10px;
+}
+
+mat-card-content {
+    margin-top: 30px;
+}
+
+.chkMargen {
+    margin-bottom: 20px;
+}
+
+.titulo {
+    width: 100%;
+    margin-top: 30px;
+}
+
+.espacio {
+    width: 100%;
+}

@@ -1,0 +1,43 @@
+<div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="32px" fxLayoutAlign="flex-start">
+    <h1 class="mat-display-1 animated fadeIn" fxFlex="0 1 calc(35% - 32px)" fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%">{{ titulo | uppercase }}</h1>
+    <div fxLayoutAlign="flex-end" fxFlex="1 1 auto" class="boton_fab" class="animated fadeIn">
+        <button mat-fab color="primary" matTooltip="Crear usuario" matTooltipPosition="above" routerLink="/usuarios/crear">
+            <mat-icon>person_add_alt_1</mat-icon>
+        </button>
+    </div>
+</div>
+
+<div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="32px" fxLayoutAlign="flex-start">
+    <mat-form-field class="example-form-field animated fadeIn" fxFlex="0 1 calc(35% - 32px)" fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%">
+        <mat-label>Buscar usuario</mat-label>
+        <input matInput type="text" [(ngModel)]="value" autocomplete="off">
+        <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+            <mat-icon>close</mat-icon>
+        </button>
+    </mat-form-field>
+</div>
+
+<br>
+<br>
+<br>
+
+<div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="32px" fxLayoutAlign="flex-start">
+    <mat-spinner *ngIf="spinner"></mat-spinner>
+    <ng-container *ngFor="let usuario of usuarios; let i">
+        <mat-card class="example-card animated fadeIn" fxFlex="0 1 calc(20% - 32px)" fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%">
+            <mat-card-header>
+                <mat-card-title>{{ usuario.nombre }} {{ usuario.apaterno }} {{ usuario.amaterno }}</mat-card-title>
+                <mat-card-subtitle>{{ usuario.rut }}</mat-card-subtitle>
+            </mat-card-header>
+            <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+            <mat-card-content>
+                <mat-slide-toggle color="primary" (change)="onChange($event.checked, usuario)" [checked]="usuario.estado">Estado</mat-slide-toggle>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-button color="primary" fxFlex="100%" (click)="verDetalle(usuario)">DETALLE</button>
+                <button mat-button color="warn" fxFlex="100%" (click)="eliminarUsuario()">ELIMINAR</button>
+            </mat-card-actions>
+        </mat-card>
+    </ng-container>
+
+</div>

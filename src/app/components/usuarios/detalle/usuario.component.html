@@ -1,0 +1,104 @@
+<div class="mainDiv animated fadeIn">
+    <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="32px" fxLayoutAlign="flex-start">
+        <h1 class="mat-display-1 animated fadeIn" fxFlex="0 1 calc(35% - 32px)" fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%">{{ titulo | uppercase }}</h1>
+    </div>
+
+    <br>
+
+    <mat-spinner *ngIf="spinner"></mat-spinner>
+    <div fxLayoutGap="30px" fxLayout="row" fxLayout.xs="column" *ngIf="!spinner" class="animated fadeIn">
+
+        <div fxFlex="20%" fxFlex.lt-md="40%" fxFlex.lt-sm="50%" fxFlex.lt-xs="80%" fxLayoutGap="20px">
+
+            <img src="assets/images/test-perfil/profile.png">
+
+        </div>
+
+        <div fxFlex="100%" fxFlex.lt-md="100%" fxFlex.lt-sm="100%" fxFlex.lt-xs="100%" fxLayoutGap="30px">
+
+            <mat-card>
+                <form autocomplete="off" [formGroup]="forma" (ngSubmit)="guardarDatos()">
+
+                    <div fxLayoutGap="30px" fxLayout="row" fxLayout.xs="column" fxLayout.sm="column">
+
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Rut</mat-label>
+                            <input matInput placeholder="Rut" [disabled]="true" [value]="rut">
+                        </mat-form-field>
+
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Email</mat-label>
+                            <input matInput placeholder="Email" formControlName="email">
+                            <mat-hint align="start" color="red" *ngIf="emailNoValido"><strong>Campo no válido</strong></mat-hint>
+                        </mat-form-field>
+
+                    </div>
+
+                    <div fxLayoutGap="30px" fxLayout="row" fxLayout.xs="column" fxLayout.sm="column">
+
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Nombre</mat-label>
+                            <input matInput placeholder="Nombre" formControlName="nombre">
+                            <mat-hint align="start" color="red" *ngIf="nombreNoValido"><strong>Campo no válido</strong></mat-hint>
+                        </mat-form-field>
+
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Apellido Paterno</mat-label>
+                            <input matInput placeholder="Apellido Paterno" formControlName="apaterno">
+                            <mat-hint align="start" *ngIf="apaternoNoValido"><strong>Campo no válido</strong></mat-hint>
+                        </mat-form-field>
+
+                    </div>
+
+                    <div fxLayoutGap="30px" fxLayout="row" fxLayout.xs="column" fxLayout.sm="column">
+
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Apellido Materno</mat-label>
+                            <input matInput placeholder="Apellido Materno" formControlName="amaterno">
+                            <mat-hint align="start" *ngIf="amaternoNoValido"><strong>Campo no válido</strong></mat-hint>
+                        </mat-form-field>
+
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Teléfono</mat-label>
+                            <span matPrefix>+56 &nbsp;</span>
+                            <input type="tel" matInput placeholder="123-456-7890" formControlName="telefono">
+                        </mat-form-field>
+
+                    </div>
+
+                    <div class="foto" fxLayoutGap="30px" fxLayout="row" fxLayout.xs="column" fxLayout.sm="column">
+
+                        <button type="button" mat-raised-button (click)="fileInput.click()">Seleccione Imagen de perfil</button>
+                        <input hidden #fileInput type="file" id="file" formControlName="foto">
+
+                    </div>
+
+                    <div fxLayoutGap="30px" fxLayout="row" fxLayout.xs="column" fxLayout.sm="column">
+
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Clave</mat-label>
+                            <input matInput type="password" placeholder="Debe contener mínimo 8 carácteres" formControlName="pass1" [class.is-invalid]="pass1NoValido">
+                        </mat-form-field>
+
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Repita Clave</mat-label>
+                            <input matInput type="password" placeholder="Debe contener mínimo 8 carácteres" formControlName="pass2" [class.is-invalid]="pass2NoValido">
+                        </mat-form-field>
+
+                    </div>
+
+                    <div fxLayout="column" fxLayoutAlign="end end" class="animated fadeIn">
+                        <button id="add-button" type="submit" mat-fab color="primary" matTooltip="Guardar datos" matTooltipPosition="above">
+                            <mat-icon>save</mat-icon>
+                        </button>
+                    </div>
+
+                </form>
+
+            </mat-card>
+
+
+        </div>
+    </div>
+
+</div>
