@@ -13,7 +13,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class UsuarioComponent implements OnInit, OnDestroy {
 
-  titulo = 'Mi información';
+  titulo = 'Información';
   usuario: any;
   rut: string;
   forma: FormGroup;
