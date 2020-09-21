@@ -13,7 +13,7 @@ export class AuthService {
 
   userData = new BehaviorSubject<UsuarioModel>(new UsuarioModel);
 
-  private url    = process.env.URL_API_AUTH + '/api/auth';
+  private url    = process.env.URL_API_AUTH + '/api/auth2';
   private apikey = process.env.API_KEY_AUTH;
 
   userToken: string;
@@ -61,7 +61,10 @@ export class AuthService {
 
     const httpOptions = {
       headers: new HttpHeaders({
-        'x-api-key': this.apikey
+        'X-Api-Key': this.apikey,
+        // 'Access-Control-Allow-Origin': '*',
+        // 'Access-Control-Allow-Credentials': 'true'
+
       })
     };
 
@@ -85,13 +88,13 @@ export class AuthService {
     localStorage.setItem('token', idToken);
 
     let userModel: UsuarioModel = {
-      rut : user.rut,
-      email: user.email,
-      nombre : user.nombre,
-      apaterno : user.apaterno,
-      amaterno : user.amaterno,
-      token : idToken,
-      isLogged : true
+      ID : user.ID,
+      EMAIL: user.EMAIL,
+      NOMBRE : user.NOMBRE,
+      APATERNO : user.APATERNO,
+      AMATERNO : user.AMATERNO,
+      TOKEN : idToken,
+      ISLOGGED : true
     };
 
     localStorage.setItem('data', JSON.stringify(userModel));

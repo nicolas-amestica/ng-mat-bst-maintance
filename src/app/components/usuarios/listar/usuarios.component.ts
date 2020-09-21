@@ -60,7 +60,7 @@ export class UsuariosComponent implements OnInit {
   verDetalle(usuario: UsuarioModel) {
 
     // this.router.navigate(['/usuarios/detalle', usuario.rut]);
-    this.router.navigate(['/usuarios/detalle'], {queryParams: {rut: usuario.rut}});
+    this.router.navigate(['/usuarios/detalle'], {queryParams: {rut: usuario.ID}});
 
   }
 

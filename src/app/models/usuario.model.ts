@@ -1,15 +1,15 @@
 export class UsuarioModel {
 
-    rut: string;
-    email?: string;
-    clave?: string;
-    nombre?: string;
-    apaterno?: string;
-    amaterno?: string;
-    foto?: string;
-    telefono?: string;
-    estado?: boolean;
-    token?: string;
-    isLogged: Boolean = false;
+    ID: string;
+    EMAIL?: string;
+    CLAVE?: string;
+    NOMBRE?: string;
+    APATERNO?: string;
+    AMATERNO?: string;
+    FOTO?: string;
+    TELEFONO?: string;
+    ESTADO?: boolean;
+    TOKEN?: string;
+    ISLOGGED: Boolean = false;
 
 }

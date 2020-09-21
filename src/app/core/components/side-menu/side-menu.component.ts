@@ -11,7 +11,7 @@ import { process } from '../../../../environments/environment';
 })
 export class SideMenuComponent implements OnInit {
 
-  isLogged: Boolean = false;
+  ISLOGGED: Boolean = false;
 
   subscription: Subscription;
 
@@ -19,7 +19,7 @@ export class SideMenuComponent implements OnInit {
 
   TITULO_TOOLBAR: string = process.env.TITULO_TOOLBAR;
 
-  rut: string;
+  ID: string;
 
   perfiles: any = [{
     id: 1,
@@ -67,15 +67,15 @@ export class SideMenuComponent implements OnInit {
   ngOnInit(): void {
 
     this.subscription = this.auth.getUserData().subscribe(data => {
-        this.rut = data.rut;
-        this.isLogged = data.isLogged;
+        this.ID = data.ID;
+        this.ISLOGGED = data.ISLOGGED;
     });
 
   }
 
   miInformacion() {
 
-    this.router.navigate(['/usuarios/detalle'], {queryParams: {rut: this.rut}});
+    this.router.navigate(['/usuarios/detalle'], {queryParams: {ID: this.ID}});
 
   }
 

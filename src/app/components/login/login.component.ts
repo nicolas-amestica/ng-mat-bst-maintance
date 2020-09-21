@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
     this.crearFormulario();
 
     if (localStorage.getItem('rut')) {
-      this.usuario.rut = localStorage.getItem('rut');
+      this.usuario.ID = localStorage.getItem('ID');
       this.recordarme = true;
     }
 
@@ -34,11 +34,11 @@ export class LoginComponent implements OnInit {
   }
 
   get rutNoValida() {
-    return this.forma.get('rut').invalid && this.forma.get('rut').touched;
+    return this.forma.get('ID').invalid && this.forma.get('ID').touched;
   }
 
   get claveNoValida() {
-    return this.forma.get('clave').invalid && this.forma.get('clave').touched;
+    return this.forma.get('CLAVE').invalid && this.forma.get('CLAVE').touched;
   }
 
   ngOnInit(): void {
@@ -50,8 +50,8 @@ export class LoginComponent implements OnInit {
   crearFormulario() {
 
     this.forma = this.fb.group({
-      rut     : [ '', [Validators.required] ],
-      clave     : [ '', [Validators.required, Validators.minLength(4)] ],
+      ID        : [ '', [Validators.required] ],
+      CLAVE     : [ '', [Validators.required, Validators.minLength(4)] ],
       recordar  : [ ]
     });
 
@@ -77,7 +77,7 @@ export class LoginComponent implements OnInit {
     this.auth.login(this.forma.value).subscribe( resp => {
 
       if (this.forma.controls.recordar.value) {
-        localStorage.setItem('rut', this.forma.controls.rut.value);
+        localStorage.setItem('ID', this.forma.controls.ID.value);
       }
 
       Swal.close();
@@ -97,8 +97,8 @@ export class LoginComponent implements OnInit {
   cargarDataAlFormulario() {
 
     this.forma.reset({
-      rut      : this.usuario.rut,
-      clave      : 'Blutengel1',
+      ID         : this.usuario.ID,
+      CLAVE      : 'Blutengel1',
       recordar   : this.recordarme
     });
 
