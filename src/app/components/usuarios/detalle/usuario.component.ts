@@ -15,7 +15,7 @@ export class UsuarioComponent implements OnInit, OnDestroy {
 
   titulo = 'Información';
   usuario: any;
-  rut: string;
+  ID: string;
   forma: FormGroup;
   foto;
   spinner = true;
@@ -28,13 +28,18 @@ export class UsuarioComponent implements OnInit, OnDestroy {
     this.crearFormulario();
 
     this.activatedRoute.queryParams.subscribe(params => {
-      this.usuarioService.listarUsuariosByRut(params.rut).subscribe((user) => {
-          this.rut = params.rut;
+
+      this.usuarioService.listarUsuariosByRut(params.ID).subscribe((user) => {
+
+          this.ID = params.ID;
           this.usuario = user;
+
           this.cargarDataAlFormulario();
-          this.spinner = false;
+
+          this.spinner = false;  
       }, (err) => {
         console.log(err);
+        this.spinner = false;
       });
 
     });
@@ -81,7 +86,7 @@ export class UsuarioComponent implements OnInit, OnDestroy {
   crearFormulario() {
 
     this.forma = this.fb.group({
-      email     : [ '', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')] ],
+      email     : [ '', [Validators.required] ],
       nombre    : [ '', [Validators.required] ],
       apaterno  : [ '', [Validators.required] ],
       amaterno  : [ '', [Validators.required] ],
@@ -98,11 +103,11 @@ export class UsuarioComponent implements OnInit, OnDestroy {
   cargarDataAlFormulario() {
 
     this.forma.reset({
-      email     : this.usuario.email,
-      nombre    : this.usuario.nombre,
-      apaterno  : this.usuario.apaterno,
-      amaterno  : this.usuario.amaterno,
-      telefono  : this.usuario.telefono
+      email     : this.usuario.EMAIL,
+      nombre    : this.usuario.NOMBRE,
+      apaterno  : this.usuario.APATERNO,
+      amaterno  : this.usuario.AMATERNO,
+      telefono  : this.usuario.TELEFONO
     });
 
   }

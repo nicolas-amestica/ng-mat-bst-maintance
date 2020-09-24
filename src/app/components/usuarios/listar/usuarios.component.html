@@ -26,12 +26,12 @@
     <ng-container *ngFor="let usuario of usuarios; let i">
         <mat-card class="example-card animated fadeIn" fxFlex="0 1 calc(20% - 32px)" fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%">
             <mat-card-header>
-                <mat-card-title>{{ usuario.nombre }} {{ usuario.apaterno }} {{ usuario.amaterno }}</mat-card-title>
-                <mat-card-subtitle>{{ usuario.rut }}</mat-card-subtitle>
+                <mat-card-title>{{ usuario.NOMBRE }} {{ usuario.APATERNO }} {{ usuario.AMATERNO }}</mat-card-title>
+                <mat-card-subtitle>{{ usuario.ID }}</mat-card-subtitle>
             </mat-card-header>
             <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
             <mat-card-content>
-                <mat-slide-toggle color="primary" (change)="onChange($event.checked, usuario)" [checked]="usuario.estado">Estado</mat-slide-toggle>
+                <mat-slide-toggle color="primary" (change)="onChange($event.checked, usuario)" [checked]="usuario.ESTADO">Estado</mat-slide-toggle>
             </mat-card-content>
             <mat-card-actions>
                 <button mat-button color="primary" fxFlex="100%" (click)="verDetalle(usuario)">DETALLE</button>

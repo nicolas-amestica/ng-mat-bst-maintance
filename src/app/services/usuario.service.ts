@@ -33,17 +33,20 @@ export class UsuarioService {
     return this.http.get<UsuarioModel[]>(this.urlListUsers, httpOptions)
       .pipe(
         map(resp => {
-          return resp['Items'];
+          return resp['data'];
         })
       );
 
   }
 
-  listarUsuariosByRut(rut: string): Observable<UsuarioModel[]> {
+  listarUsuariosByRut(ID: string): Observable<UsuarioModel[]> {
 
     const httpOptions = {
-      headers: { 'x-api-key': this.apikey, token: localStorage.getItem('token') },
-      params: { rut }
+      headers: {
+        'x-api-key': this.apikey,
+        token: localStorage.getItem('token')
+      },
+      params: { ID }
     };
 
     return this.http.get<UsuarioModel[]>(this.urlListUsersByRut, httpOptions )

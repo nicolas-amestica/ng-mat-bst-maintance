@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
 
     this.crearFormulario();
 
-    if (localStorage.getItem('rut')) {
+    if (localStorage.getItem('ID')) {
       this.usuario.ID = localStorage.getItem('ID');
       this.recordarme = true;
     }

@@ -40,15 +40,16 @@ export class UsuariosComponent implements OnInit {
 
     this.usuarioService.listarUsuarios().subscribe((users) => {
       this.usuarios = users;
-      this.spinner = false;
     }, (err) => {
       Swal.fire({
         icon: 'warning',
         title: 'Acceso no autorizado',
         text: err.error.message
       });
-
     });
+
+    this.spinner = false;
+
   }
 
   eliminarUsuario() {

@@ -13,7 +13,7 @@ export class AuthService {
 
   userData = new BehaviorSubject<UsuarioModel>(new UsuarioModel);
 
-  private url    = process.env.URL_API_AUTH + '/api/auth2';
+  private url    = process.env.URL_API_AUTH + '/api/auth';
   private apikey = process.env.API_KEY_AUTH;
 
   userToken: string;
