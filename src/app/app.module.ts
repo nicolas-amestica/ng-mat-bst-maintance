@@ -23,6 +23,7 @@ import { UsuariosComponent } from './components/usuarios/listar/usuarios.compone
 import { SnackComponent } from './components/comun/snack/snack.component';
 import { DialogComponent } from './components/comun/dialog/dialog.component';
 import { UsuarioCrearComponent } from './components/usuarios/crear/usuario-crear.component';
+import { InstanceTarjetaComponent } from './components/instances/instance-tarjeta/instance-tarjeta.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { UsuarioCrearComponent } from './components/usuarios/crear/usuario-crear
     UsuariosComponent,
     SnackComponent,
     DialogComponent,
-    UsuarioCrearComponent
+    UsuarioCrearComponent,
+    InstanceTarjetaComponent
   ],
   imports: [
     BrowserModule,

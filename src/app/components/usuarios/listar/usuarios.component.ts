@@ -67,7 +67,7 @@ export class UsuariosComponent implements OnInit {
 
   onChange(value, usuario) {
  
-    usuario.estado = value ? true : false;
+    usuario.ESTADO = value ? true : false;
 
     this._snackBar.open('Estado actualizado', 'Deshacer', {
       duration: 3000,

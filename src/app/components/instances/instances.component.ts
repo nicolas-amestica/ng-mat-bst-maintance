@@ -1,4 +1,7 @@
+import { InstanciaModel } from 'src/app/models/instancia.model';
 import { Component, OnInit } from '@angular/core';
+import { InstanciaService } from './../../services/instancia/instancia.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-instances',
@@ -7,9 +10,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InstancesComponent implements OnInit {
 
-  constructor() { }
+  instancias: InstanciaModel[] = [];
+  spinner = true;
+  color = "primary";
 
-  ngOnInit(): void {
+  constructor( private instanciaService: InstanciaService) {
+
+    this.listarInstancias();
+
+  }
+
+  ngOnInit(): void { }
+
+  listarInstancias(): void {
+
+    this.instanciaService.listarInstancias().subscribe((inst) => {
+      this.instancias = inst;
+    }, (err) => {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Acceso no autorizado',
+        text: err.error
+      });
+    });
+    
+    this.spinner = false;
+
   }
 
 }

@@ -22,6 +22,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatChipsModule } from '@angular/material/chips';
 
 
 
@@ -49,7 +50,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatProgressSpinnerModule,
     MatProgressBarModule,
     MatDialogModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatChipsModule
   ],
   exports: [
     MatButtonModule,
@@ -72,7 +74,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatProgressSpinnerModule,
     MatProgressBarModule,
     MatDialogModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatChipsModule
   ],
 })
 export class MaterialModule { }
