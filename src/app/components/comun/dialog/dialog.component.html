@@ -1,5 +1,15 @@
-<h1 mat-dialog-title>Dialog with elements</h1>
-<div mat-dialog-content>This dialog showcases the title, close, content and actions elements.</div>
-<div mat-dialog-actions>
-    <button mat-button mat-dialog-close>Close</button>
+<h2 mat-dialog-title>
+    {{ data.titulo }}
+</h2>
+<div mat-dialog-content>
+    {{ data.message }}
+</div>
+
+<div mat-dialog-actions *ngIf="data.type == 'delete'">
+    <button mat-stroked-button color="warn" mat-dialog-close mat-dialog-close="0">{{ data.btnCancel }}</button>
+    <button mat-stroked-button color="primary" mat-dialog-close mat-dialog-close="1">{{ data.btnSuccess }}</button>
+</div>
+
+<div mat-dialog-actions *ngIf="data.type == 'confirm'">
+    <button mat-stroked-button mat-dialog-close mat-dialog-close="1">Aceptar</button>
 </div>

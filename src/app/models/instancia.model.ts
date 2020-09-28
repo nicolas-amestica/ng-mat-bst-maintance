@@ -11,4 +11,8 @@ export class InstanciaModel {
         Code: number,
         Name: string
     };
+    Tags?: [{
+        Key: string,
+        Value: string
+    }]
 }

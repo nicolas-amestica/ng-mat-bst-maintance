@@ -1,47 +1,20 @@
 <mat-card>
     <mat-card-header>
-        <mat-card-title  *ngIf="instancia.State.Code == 16" class="blue-text">{{ instancia.State.Name | uppercase }}</mat-card-title>
+        <mat-card-title *ngIf="instancia.State.Code == 16" class="blue-text">{{ instancia.State.Name | uppercase }}</mat-card-title>
         <mat-card-title *ngIf="instancia.State.Code == 80" class="red-text">{{ instancia.State.Name | uppercase }}</mat-card-title>
         <mat-card-title *ngIf="instancia.State.Code != 80 && instancia.State.Code != 16" class="orage-text">{{ instancia.State.Name | uppercase }}</mat-card-title>
         <mat-card-subtitle>{{ instancia.InstanceId }}</mat-card-subtitle>
-        <!-- <mat-card-title>titulo</mat-card-title> -->
-        <!-- <mat-card-subtitle>subtitulo</mat-card-subtitle> -->
     </mat-card-header>
     <img mat-card-image src="assets/images/ec2.png">
     <mat-card-content>
-        <mat-slide-toggle *ngIf="instancia.State.Code == 16" color="primary" (change)="onChange($event.checked, instancia.InstanceId)" checked>Activo</mat-slide-toggle>
-        <mat-slide-toggle *ngIf="instancia.State.Code != 16" color="primary" (change)="onChange($event.checked, instancia.InstanceId)">Activo</mat-slide-toggle>
-        <!-- <mat-slide-toggle color="primary" (change)="onChange($event.checked, $event.checked)" checked>Activo</mat-slide-toggle> -->
+        <mat-slide-toggle color="primary" (change)="onChange($event, instancia.InstanceId)" [(ngModel)]="isChecked" [disabled]="onlyReadCheck">Estado</mat-slide-toggle>
         <br/><br/>
         <mat-chip-list>
             <mat-chip *ngFor="let tag of instancia.Tags">{{ tag.Value }}</mat-chip>
-            <!-- <mat-chip>Tags</mat-chip>-->
         </mat-chip-list>
     </mat-card-content>
     <mat-card-actions>
         <button mat-button color="primary" fxFlex="100%">DETALLE</button>
-        <button mat-button color="warn" fxFlex="100%">TERMINAR</button>
+        <button mat-button color="warn" fxFlex="100%">REINICIAR</button>
     </mat-card-actions>
 </mat-card>
-
-
-<!-- <ng-container >
-    <mat-card>
-        <mat-card-header>
-            <mat-card-title>titulo</mat-card-title>
-            <mat-card-subtitle>subtitulo</mat-card-subtitle>
-        </mat-card-header>
-        <img mat-card-image src="assets/images/ec2.png">
-        <mat-card-content>
-            <mat-slide-toggle color="primary" checked>Activo</mat-slide-toggle>
-            <br/><br/>
-            <mat-chip-list>
-                <mat-chip>Tags</mat-chip>
-            </mat-chip-list>
-        </mat-card-content>
-        <mat-card-actions>
-            <button mat-button color="primary" fxFlex="100%">DETALLE</button>
-            <button mat-button color="warn" fxFlex="100%">TERMINAR</button>
-        </mat-card-actions>
-    </mat-card>
-</ng-container> -->

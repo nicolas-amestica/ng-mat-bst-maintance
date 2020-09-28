@@ -50,6 +50,7 @@ import { InstanceTarjetaComponent } from './components/instances/instance-tarjet
     MaterialModule,
     FlexLayoutModule
   ],
+  entryComponents:[DialogComponent],
   providers: [],
   bootstrap: [AppComponent]
 })
