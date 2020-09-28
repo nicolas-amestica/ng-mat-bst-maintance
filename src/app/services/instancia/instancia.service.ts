@@ -20,8 +20,6 @@ export class InstanciaService {
   private urlDescribeStatusInstancia = process.env.URL_API_INSTANCIA + '/api/instancias/describeStatus';
   private apikey = process.env.API_KEY_INSTANCIA;
 
-  // header: HttpHeaders = new HttpHeaders();
-
   constructor( private http: HttpClient) { }
 
   listarInstancias(): Observable<any[]> {
