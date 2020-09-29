@@ -19,17 +19,26 @@ export class InstanceTarjetaComponent implements OnInit {
   isChecked: boolean;
   resultDialog: number;
   barLoading = false;
+  delete = "delete";
+  confirm = "confirm";
 
   constructor( private instanciaService: InstanciaService,
                private dialog: MatDialog,
                private router: Router ) { }
 
-  ngOnInit(): void { 
+  ngOnInit(): void {
+
+    console.log(this.instancia);
 
     if (this.instancia.State.Code == 16) {
       this.isChecked = true;
     } else {
       this.isChecked = false;
+    }
+
+    if (this.instancia.State.Code == 48) {
+      this.isChecked = false;
+      this.onlyReadCheck = true;
     }
 
   }
@@ -73,7 +82,7 @@ export class InstanceTarjetaComponent implements OnInit {
         this.barLoading = false;
       });
     } else {
-      const dialogRef = this.dialog.open(DialogComponent, { data: { type: 'delete', titulo: 'Instancias', message: `¿Está seguro que desea aplicar apagar la instancia`, btnCancel: 'Cancelar', btnSuccess: 'Aceptar' } });
+      const dialogRef = this.dialog.open(DialogComponent, { data: { type: `${this.delete}`, titulo: 'Instancias', message: `¿Está seguro que desea apagar la instancia?`, detalle: `Nombre de instancia: ${instanciaId}`, btnCancel: 'Cancelar', btnSuccess: 'Aceptar' } });
       dialogRef.afterClosed().subscribe(result => {
         this.resultDialog = result;
         if (this.resultDialog == 1) {
@@ -123,13 +132,28 @@ export class InstanceTarjetaComponent implements OnInit {
 
   restartInstance(instanceId): void {
 
-    const dialogRef = this.dialog.open(DialogComponent, { data: { type: 'delete', titulo: 'Instancia', message: `¿Está seguro que desea reiniciar la instancia?`, detalle: `Nombre de instancia: ${instanceId}`,  btnCancel: 'Cancelar', btnSuccess: 'Aceptar' } });
+    const dialogRef = this.dialog.open(DialogComponent, { data: { type: `${this.delete}`, titulo: 'Instancia', message: `¿Está seguro que desea reiniciar la instancia?`, detalle: `Nombre de instancia: ${instanceId}`,  btnCancel: 'Cancelar', btnSuccess: 'Aceptar' } });
     dialogRef.afterClosed().subscribe(result => {
       this.resultDialog = result;
       if (this.resultDialog == 1) {
-        console.log("Reiniciar");
+        this.barLoading = true;
+        this.instanciaService.rebootInstanceById(instanceId).subscribe((result) => {
+          this.openDialog(result.message, `Nombre de instancia: ${instanceId}`, '', this.confirm);
+          this.barLoading = false;
+        }, (err) => {
+          this.openDialog(err.error.error, err.error.err.message, err.error.err.code, this.confirm);
+          this.barLoading = false;
+        });
+      } else {
+        this.barLoading = false;
       }
     });
+
+  }
+
+  openDialog(message, detalle, code, type): void {
+
+    const dialogRef = this.dialog.open(DialogComponent, { data: { type: `${type}`, titulo: 'Instancia', message: `${message}`, detalle: `${detalle} - ${code}`,  btnCancel: 'Cancelar', btnSuccess: 'Aceptar' } });
 
   }
 

@@ -15,6 +15,7 @@
 
         <div fxFlex="100%" fxFlex.lt-md="100%" fxFlex.lt-sm="100%" fxFlex.lt-xs="100%" fxLayoutGap="60px">
 
+            <mat-progress-bar mode="indeterminate" *ngIf="barLoading"></mat-progress-bar>
             <mat-card>
 
                     <div fxLayoutGap="5px" fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" *ngIf="instancia.InstanceId">
@@ -116,8 +117,8 @@
 
                     <br>
 
-                    <div fxLayoutGap="5px" fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" *ngIf="instancia.InstanceId">
-                        <button mat-stroked-button color="warn" (click)="terminateInstance(instancia.InstanceId)">TEMRINAR</button>
+                    <div fxLayoutGap="5px" fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" *ngIf="instancia.InstanceId && instancia.State.Code != 48">
+                        <button mat-stroked-button color="warn" (click)="terminateInstance(instancia.InstanceId)">TERMINAR</button>
                     </div>
 
             </mat-card>
