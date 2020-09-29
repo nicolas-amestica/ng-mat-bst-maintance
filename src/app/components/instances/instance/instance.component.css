@@ -1,0 +1,13 @@
+img {
+    max-width: 100%;
+    border-radius: 50%;
+}
+
+.mainDiv {
+    position: relative;
+}
+
+.foto {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

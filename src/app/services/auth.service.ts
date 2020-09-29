@@ -61,10 +61,7 @@ export class AuthService {
 
     const httpOptions = {
       headers: new HttpHeaders({
-        'X-Api-Key': this.apikey,
-        // 'Access-Control-Allow-Origin': '*',
-        // 'Access-Control-Allow-Credentials': 'true'
-
+        'X-Api-Key': this.apikey
       })
     };
 

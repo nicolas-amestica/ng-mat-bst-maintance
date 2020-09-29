@@ -1,11 +1,15 @@
+<div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="32px" fxLayoutAlign="flex-start">
+    <h1 class="mat-display-1 animated fadeIn" fxFlex="0 1 calc(35% - 32px)" fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%">{{ titulo | uppercase }}</h1>
+</div>
+
 <div class="contenedor" fxLayout="row wrap" fxLayoutGap="32px" fxLayout.lt-sm="column" fxLayoutAlign="flex-start">
+    <mat-spinner *ngIf="spinner"></mat-spinner>
     <app-instance-tarjeta
-        class="example-card"
+        class="example-card animated fadeIn fast"
         fxFlex="0 1 calc(23% - 32px)"
         fxFlex.lt-md="0 1 calc(50% - 32px)"
         fxFlex.lt-sm="100%"
         [instancia]="instancia"
-        [index]="i"
-        *ngFor="let instancia of instancias; let i = index">
+        *ngFor="let instancia of instancias">
     </app-instance-tarjeta>
 </div>

@@ -12,12 +12,13 @@ import { map } from 'rxjs/operators';
 })
 export class InstanciaService {
 
-  instancia: InstanciaModel[];
+  // instancia: InstanciaModel[];
 
   private urlListInstances = process.env.URL_API_INSTANCIA + '/api/instancias/listInstances';
   private urlApagarInstancia = process.env.URL_API_INSTANCIA + '/api/instancias/powerOff';
   private urlEcenderInstancia = process.env.URL_API_INSTANCIA + '/api/instancias/powerOn';
   private urlDescribeStatusInstancia = process.env.URL_API_INSTANCIA + '/api/instancias/describeStatus';
+  private urlDescribeInstanciaById = process.env.URL_API_INSTANCIA + '/api/instancias/listInstanceById';
   private apikey = process.env.API_KEY_INSTANCIA;
 
   constructor( private http: HttpClient) { }
@@ -99,6 +100,28 @@ export class InstanciaService {
     return this.http.get<InstanciaModel>(`${this.urlDescribeStatusInstancia}?${httpParams.toString()}`, httpOptions)
       .pipe(
         map(resp => {
+          return resp['data'];
+        })
+      );
+
+  }
+
+  describeInstanceById(instanciaId: string): Observable<InstanciaModel> {
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'x-api-key': this.apikey,
+        token: localStorage.getItem('token')
+      })
+    };
+
+    const httpBody = [
+      instanciaId
+    ];
+
+    return this.http.post<InstanciaModel>(this.urlDescribeInstanciaById, httpBody, httpOptions )
+      .pipe(
+        map( resp => {
           return resp['data'];
         })
       );

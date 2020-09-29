@@ -1,5 +1,7 @@
+<mat-progress-bar mode="indeterminate" *ngIf="barLoading"></mat-progress-bar>
 <mat-card>
     <mat-card-header>
+        
         <mat-card-title *ngIf="instancia.State.Code == 16" class="blue-text">{{ instancia.State.Name | uppercase }}</mat-card-title>
         <mat-card-title *ngIf="instancia.State.Code == 80" class="red-text">{{ instancia.State.Name | uppercase }}</mat-card-title>
         <mat-card-title *ngIf="instancia.State.Code != 80 && instancia.State.Code != 16" class="orage-text">{{ instancia.State.Name | uppercase }}</mat-card-title>
@@ -14,7 +16,7 @@
         </mat-chip-list>
     </mat-card-content>
     <mat-card-actions>
-        <button mat-button color="primary" fxFlex="100%">DETALLE</button>
-        <button mat-button color="warn" fxFlex="100%">REINICIAR</button>
+        <button mat-button color="primary" fxFlex="100%" (click)="verDetalle(instancia.InstanceId)">DETALLE</button>
+        <button mat-button color="warn" fxFlex="100%" (click)="restartInstance(instancia.InstanceId)">REINICIAR</button>
     </mat-card-actions>
 </mat-card>

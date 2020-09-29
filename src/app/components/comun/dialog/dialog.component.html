@@ -2,7 +2,19 @@
     {{ data.titulo }}
 </h2>
 <div mat-dialog-content>
-    {{ data.message }}
+    <mat-accordion>
+        <mat-expansion-panel (opened)="panelOpenState = true"
+                             (closed)="panelOpenState = false"
+                             class="mat-elevation-z0"
+                             >
+          <mat-expansion-panel-header>
+            <mat-panel-description>
+                {{ data.message }}    
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <p class="separacion">{{ data.detalle }}</p>
+        </mat-expansion-panel>
+      </mat-accordion>
 </div>
 
 <div mat-dialog-actions *ngIf="data.type == 'delete'">
@@ -11,5 +23,5 @@
 </div>
 
 <div mat-dialog-actions *ngIf="data.type == 'confirm'">
-    <button mat-stroked-button mat-dialog-close mat-dialog-close="1">Aceptar</button>
+    <button mat-stroked-button mat-dialog-close mat-dialog-close="1">{{ data.btnSuccess }}</button>
 </div>

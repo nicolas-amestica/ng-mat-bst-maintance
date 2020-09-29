@@ -8,6 +8,8 @@ import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 })
 export class DialogComponent implements OnInit {
 
+  panelOpenState = false;
+
   constructor( public dialog: MatDialogRef<DialogComponent>,
                @Inject(MAT_DIALOG_DATA) public data: any) { }
 

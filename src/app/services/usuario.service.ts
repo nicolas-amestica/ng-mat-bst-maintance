@@ -15,7 +15,7 @@ export class UsuarioService {
   private urlListUsersByRut = process.env.URL_API_USER + '/api/usuarios/listByRut';
   private apikey = process.env.API_KEY_USER;
 
-  header: HttpHeaders = new HttpHeaders();
+  // header: HttpHeaders = new HttpHeaders();
 
   constructor( private http: HttpClient) {
 

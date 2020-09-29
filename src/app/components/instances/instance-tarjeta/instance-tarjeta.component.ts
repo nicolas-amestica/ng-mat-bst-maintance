@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { InstanciaModel } from 'src/app/models/instancia.model';
 import { Component, Input, OnInit } from '@angular/core';
 import { InstanciaService } from './../../../services/instancia/instancia.service';
@@ -13,23 +14,21 @@ import { DialogComponent } from "../../comun/dialog/dialog.component";
 export class InstanceTarjetaComponent implements OnInit {
 
   @Input() instancia: InstanciaModel = {};
-  @Input() index: number;
 
   onlyReadCheck: boolean;
   isChecked: boolean;
   resultDialog: number;
-  // selectedVal: string;
+  barLoading = false;
 
   constructor( private instanciaService: InstanciaService,
-               private dialog: MatDialog ) { }
+               private dialog: MatDialog,
+               private router: Router ) { }
 
   ngOnInit(): void { 
 
     if (this.instancia.State.Code == 16) {
-      // this.selectedVal = "Encendida";
       this.isChecked = true;
     } else {
-      // this.selectedVal = "Apagada";
       this.isChecked = false;
     }
 
@@ -38,6 +37,7 @@ export class InstanceTarjetaComponent implements OnInit {
   onChange(event, instanciaId) {
 
     this.onlyReadCheck = true;
+    this.barLoading = true;
     this.cambiarEstadoInstancia(event, instanciaId);
 
   }
@@ -53,6 +53,7 @@ export class InstanceTarjetaComponent implements OnInit {
             this.instancia.State.Code = ReInst1.State['Code'];
             this.instancia.State.Name = ReInst1.State['Name'];
             this.onlyReadCheck = false;
+            this.barLoading = false;
           }, (err) => {
             Swal.fire({
               icon: 'warning',
@@ -60,8 +61,8 @@ export class InstanceTarjetaComponent implements OnInit {
               text: err.error.err.message
             });
             this.onlyReadCheck = false;
+            this.barLoading = false;
           });
-          // this.selectedVal = "Encendida";
         }, 30000);
       }, (err) => {
         Swal.fire({
@@ -69,7 +70,7 @@ export class InstanceTarjetaComponent implements OnInit {
           title: 'Instancia EC2',
           text: err.error.err.message
         });
-        // this.selectedVal = "Apagada";
+        this.barLoading = false;
       });
     } else {
       const dialogRef = this.dialog.open(DialogComponent, { data: { type: 'delete', titulo: 'Instancias', message: `¿Está seguro que desea aplicar apagar la instancia`, btnCancel: 'Cancelar', btnSuccess: 'Aceptar' } });
@@ -84,6 +85,7 @@ export class InstanceTarjetaComponent implements OnInit {
                 this.instancia.State.Code = ReInst.State['Code'];
                 this.instancia.State.Name = ReInst.State['Name'];
                 this.onlyReadCheck = false;
+                this.barLoading = false;
               }, (err) => {
                 Swal.fire({
                   icon: 'warning',
@@ -91,8 +93,8 @@ export class InstanceTarjetaComponent implements OnInit {
                   text: err.error.err.message
                 });
                 this.onlyReadCheck = false;
+                this.barLoading = false;
               });
-              // this.selectedVal = "Apagada";
             }, 30000);
           }, (err) => {
             Swal.fire({
@@ -100,33 +102,35 @@ export class InstanceTarjetaComponent implements OnInit {
               title: 'Instancia EC2',
               text: err.error.err.message
             });
-            // this.selectedVal = "Encendida";
+            this.barLoading = false;
           });
         } else {
           this.isChecked = true;
           this.onlyReadCheck = false;
-          // this.selectedVal = "Encendida";
+          this.barLoading = false;
         }
 
       });
     }
+  
+  }
 
-    // if (this.instancia.State.Code == 16) {
-    //   this.selectedVal = "Encendida";
-    // } else {
-    //   this.selectedVal = "Apagada";
-    // }
+  verDetalle(instanceId): void {
+
+    this.router.navigate( ['/instance', instanceId] )
 
   }
 
-  // openDialog(): void {
+  restartInstance(instanceId): void {
 
-  //   const dialogRef = this.dialog.open(DialogComponent, { data: { type: 'delete', titulo: 'Instancias', message: `¿Está seguro que desea aplicar apagar la instancia` } });
+    const dialogRef = this.dialog.open(DialogComponent, { data: { type: 'delete', titulo: 'Instancia', message: `¿Está seguro que desea reiniciar la instancia?`, detalle: `Nombre de instancia: ${instanceId}`,  btnCancel: 'Cancelar', btnSuccess: 'Aceptar' } });
+    dialogRef.afterClosed().subscribe(result => {
+      this.resultDialog = result;
+      if (this.resultDialog == 1) {
+        console.log("Reiniciar");
+      }
+    });
 
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     return result;
-  //   })
-
-  // }
+  }
 
 }

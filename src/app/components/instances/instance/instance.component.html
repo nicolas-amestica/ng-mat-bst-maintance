@@ -1,0 +1,129 @@
+<div class="mainDiv animated fadeIn">
+    <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="32px" fxLayoutAlign="flex-start">
+        <h4 class="mat-display-1 animated fadeIn" fxFlex="0 1 calc(35% - 32px)" fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%">{{ titulo | uppercase }}</h4>
+    </div>
+
+    <br>
+
+    <mat-spinner *ngIf="spinner"></mat-spinner>
+    <div fxLayoutGap="30px" fxLayout="row" fxLayout.xs="column" *ngIf="!spinner" class="animated fadeIn">
+
+        <div fxFlex="20%" fxFlex.lt-md="40%" fxFlex.lt-sm="50%" fxFlex.lt-xs="80%" fxLayoutGap="20px">
+            <img src="assets/images/ec2.png">
+            <button class="btn-block" mat-stroked-button color="primary" [routerLink]="['/instances']">REGRESAR</button>
+        </div>
+
+        <div fxFlex="100%" fxFlex.lt-md="100%" fxFlex.lt-sm="100%" fxFlex.lt-xs="100%" fxLayoutGap="60px">
+
+            <mat-card>
+
+                    <div fxLayoutGap="5px" fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" *ngIf="instancia.InstanceId">
+                        <div role="group">
+                            <label>Instance Id:</label>
+                            <span class="mat-subheading-2 mat-body-strong">&nbsp;&nbsp;&nbsp;{{ instancia.InstanceId }}</span>
+                        </div>
+                    </div>
+
+                    <br>
+
+                    <div fxLayoutGap="5px" fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" *ngIf="instancia.State">
+                        <div role="group">
+                            <label>State:</label>
+                            <span class="mat-subheading-2 mat-body-strong">&nbsp;&nbsp;&nbsp;{{ instancia.State.Name }}</span>
+                        </div>
+                    </div>
+
+                    <br>
+
+                    <div fxLayoutGap="5px" fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" *ngIf="instancia.InstanceType">
+                        <div role="group">
+                            <label>Instance Type:</label>
+                            <span class="mat-subheading-2 mat-body-strong">&nbsp;&nbsp;&nbsp;{{ instancia.InstanceType }}</span>
+                        </div>
+                    </div>
+
+                    <br>
+
+                    <div fxLayoutGap="5px" fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" *ngIf="instancia.Monitoring">
+                        <div role="group">
+                            <label>Monitoring:</label>
+                            <span class="mat-subheading-2 mat-body-strong">&nbsp;&nbsp;&nbsp;{{ instancia.Monitoring }}</span>
+                        </div>
+                    </div>
+
+                    <br>
+
+                    <div fxLayoutGap="5px" fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" *ngIf="instancia.PrivateDnsName">
+                        <div role="group">
+                            <label>Private Dns Name:</label>
+                            <span class="mat-subheading-2 mat-body-strong">&nbsp;&nbsp;&nbsp;{{ instancia.PrivateDnsName }}</span>
+                        </div>
+                    </div>
+
+                    <br>
+
+                    <div fxLayoutGap="5px" fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" *ngIf="instancia.PrivateIpAddress">
+                        <div role="group">
+                            <label>Private Ip Address:</label>
+                            <span class="mat-subheading-2 mat-body-strong">&nbsp;&nbsp;&nbsp;{{ instancia.PrivateIpAddress }}</span>
+                        </div>
+                    </div>
+
+                    <br>
+
+                    <div fxLayoutGap="5px" fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" *ngIf="instancia.PublicDnsName">
+                        <div role="group">
+                            <label>Public Dns Name:</label>
+                            <span class="mat-subheading-2 mat-body-strong">&nbsp;&nbsp;&nbsp;{{ instancia.PublicDnsName }}</span>
+                        </div>
+                    </div>
+
+                    <br>
+
+                    <div fxLayoutGap="5px" fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" *ngIf="instancia.SubnetId">
+                        <div role="group">
+                            <label>Subnet Id:</label>
+                            <span class="mat-subheading-2 mat-body-strong">&nbsp;&nbsp;&nbsp;{{ instancia.SubnetId }}</span>
+                        </div>
+                    </div>
+
+                    <br>
+
+                    <div fxLayoutGap="5px" fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" *ngIf="instancia.VpcId">
+                        <div role="group">
+                            <label>Vpc Id:</label>
+                            <span class="mat-subheading-2 mat-body-strong">&nbsp;&nbsp;&nbsp;{{ instancia.VpcId }}</span>
+                        </div>
+                    </div>
+
+                    <br>
+
+                    <div fxLayoutGap="5px" fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" *ngIf="instancia.Tags">
+                        <mat-chip-list>
+                            <label>Tags:</label>
+                            <mat-chip *ngFor='let tag of instancia.Tags'>&nbsp;&nbsp;&nbsp;{{ tag.Value }}</mat-chip>
+                        </mat-chip-list>
+                    </div>
+
+                    <br>
+
+                    <div fxLayoutGap="5px" fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" *ngIf="instancia.SecurityGroups">
+                        <mat-chip-list>
+                            <label>Security Groups:</label>
+                            <mat-chip *ngFor='let securityGroup of instancia.SecurityGroups'>&nbsp;&nbsp;&nbsp;{{ securityGroup.GroupName }}</mat-chip>
+                        </mat-chip-list>
+                    </div>
+
+                    <br>
+
+                    <div fxLayoutGap="5px" fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" *ngIf="instancia.InstanceId">
+                        <button mat-stroked-button color="warn" (click)="terminateInstance(instancia.InstanceId)">TEMRINAR</button>
+                    </div>
+
+            </mat-card>
+
+
+        </div>
+    </div>
+
+</div> 

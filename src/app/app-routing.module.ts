@@ -9,6 +9,7 @@ import { UsuarioComponent } from './components/usuarios/detalle/usuario.componen
 import { UsuariosComponent } from './components/usuarios/listar/usuarios.component';
 import { UsuarioCrearComponent } from './components/usuarios/crear/usuario-crear.component';
 import { InstanceTarjetaComponent } from './components/instances/instance-tarjeta/instance-tarjeta.component';
+import { InstanceComponent } from './components/instances/instance/instance.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'usuarios/crear', component: UsuarioCrearComponent, canActivate: [ AuthGuard ] },
   { path: 'instances', component: InstancesComponent, canActivate: [ AuthGuard ] },
   { path: 'instance-tarjeta', component: InstanceTarjetaComponent, canActivate: [ AuthGuard ] },
+  { path: 'instance/:id', component: InstanceComponent, canActivate: [ AuthGuard ] },
   { path: '**', pathMatch: 'full', redirectTo: 'login' },
   { path: 'side-menu', component: SideMenuComponent, canActivate: [ AuthGuard ] },
 ];

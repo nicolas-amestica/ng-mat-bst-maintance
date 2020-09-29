@@ -10,6 +10,7 @@ import Swal from 'sweetalert2';
 })
 export class InstancesComponent implements OnInit {
 
+  titulo = "Instancias";
   instancias: InstanciaModel[] = [];
   spinner = true;
   color = "primary";
@@ -26,15 +27,15 @@ export class InstancesComponent implements OnInit {
 
     this.instanciaService.listarInstancias().subscribe((inst) => {
       this.instancias = inst;
+      this.spinner = false;
     }, (err) => {
       Swal.fire({
         icon: 'warning',
         title: 'Acceso no autorizado',
         text: err.error
       });
+      this.spinner = false;
     });
-    
-    this.spinner = false;
 
   }
 

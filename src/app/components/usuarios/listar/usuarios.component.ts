@@ -4,7 +4,6 @@ import { UsuarioModel } from '../../../models/usuario.model';
 
 import { DialogComponent } from '../../comun/dialog/dialog.component';
 
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 
 import Swal from 'sweetalert2';
@@ -20,35 +19,31 @@ export class UsuariosComponent implements OnInit {
   titulo = 'Usuarios';
   usuarios: UsuarioModel[] = [];
   value: string;
-
   spinner = true;
 
   constructor( private usuarioService: UsuarioService,
                private router: Router,
-               private _snackBar: MatSnackBar,
                public dialog: MatDialog) {
 
     this.listarUsuarios();
 
   }
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void { }
 
   listarUsuarios(): void {
 
     this.usuarioService.listarUsuarios().subscribe((users) => {
       this.usuarios = users;
+      this.spinner = false;
     }, (err) => {
       Swal.fire({
         icon: 'warning',
         title: 'Acceso no autorizado',
         text: err.error.message
       });
+      this.spinner = false;
     });
-
-    this.spinner = false;
 
   }
 
@@ -68,14 +63,6 @@ export class UsuariosComponent implements OnInit {
   onChange(value, usuario) {
  
     usuario.ESTADO = value ? true : false;
-
-    this._snackBar.open('Estado actualizado', 'Deshacer', {
-      duration: 3000,
-      horizontalPosition: 'center',
-      verticalPosition: 'top',
-      panelClass: 'notif-success'
-    });
-
 
   }
 

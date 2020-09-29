@@ -14,5 +14,9 @@ export class InstanciaModel {
     Tags?: [{
         Key: string,
         Value: string
-    }]
+    }];
+    SecurityGroups?: [{
+        GroupId: string,
+        GroupName: string
+    }];
 }
