@@ -12,13 +12,9 @@ import { process } from '../../../../environments/environment';
 export class SideMenuComponent implements OnInit {
 
   ISLOGGED: Boolean = false;
-
   subscription: Subscription;
-
   panelOpenState = false;
-
   TITULO_TOOLBAR: string = process.env.TITULO_TOOLBAR;
-
   ID: string;
 
   perfiles: any = [{
@@ -39,19 +35,19 @@ export class SideMenuComponent implements OnInit {
     name: 'INSTANCIAS',
     icon: 'computer',
     servicios: [{
-      id: 1,
+      id: 3,
       name: 'Ver Instancias',
       ruta: '/instances',
       icon: 'home',
       total: 3
     }, {
-      id: 2,
+      id: 4,
       name: 'Encender/Apagar Instancias',
       ruta: '/instances',
       icon: 'home',
       total: 6
     }, {
-      id: 3,
+      id: 5,
       name: 'Horario Instancias',
       ruta: '/instances',
       icon: 'home',
@@ -67,8 +63,9 @@ export class SideMenuComponent implements OnInit {
   ngOnInit(): void {
 
     this.subscription = this.auth.getUserData().subscribe(data => {
-        this.ID = data.ID;
-        this.ISLOGGED = data.ISLOGGED;
+      this.ID = data.ID;
+      this.ISLOGGED = data.ISLOGGED;
+      this.cargarPerfiles();
     });
 
   }
@@ -76,6 +73,12 @@ export class SideMenuComponent implements OnInit {
   miInformacion() {
 
     this.router.navigate(['/usuarios/detalle'], {queryParams: {ID: this.ID}});
+
+  }
+
+  cargarPerfiles() {
+
+    console.log(this.ID);
 
   }
 

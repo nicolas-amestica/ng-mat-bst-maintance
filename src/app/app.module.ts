@@ -25,6 +25,7 @@ import { DialogComponent } from './components/comun/dialog/dialog.component';
 import { UsuarioCrearComponent } from './components/usuarios/crear/usuario-crear.component';
 import { InstanceTarjetaComponent } from './components/instances/instance-tarjeta/instance-tarjeta.component';
 import { InstanceComponent } from './components/instances/instance/instance.component';
+import { PerfilComponent } from './core/components/perfil/perfil.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { InstanceComponent } from './components/instances/instance/instance.comp
     DialogComponent,
     UsuarioCrearComponent,
     InstanceTarjetaComponent,
-    InstanceComponent
+    InstanceComponent,
+    PerfilComponent
   ],
   imports: [
     BrowserModule,

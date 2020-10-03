@@ -1,0 +1,20 @@
+<mat-expansion-panel>
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+            <mat-icon>{{ perfil.icon }}</mat-icon>
+        </mat-panel-title>
+
+        <mat-panel-description>
+            {{ perfil.name | uppercase }}
+        </mat-panel-description>
+
+    </mat-expansion-panel-header>
+
+    <mat-nav-list>
+        <mat-list-item class="espaciado" *ngFor="let servicio of perfil.servicios" [routerLink]="servicio.ruta">
+            <a matLine>{{ servicio.name }}</a>
+            <span [matBadge]="servicio.total" matBadgeSize="small" matBadgeColor="warn"></span>
+        </mat-list-item>
+    </mat-nav-list>
+
+</mat-expansion-panel>

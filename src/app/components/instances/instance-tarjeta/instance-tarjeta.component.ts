@@ -28,7 +28,7 @@ export class InstanceTarjetaComponent implements OnInit {
 
   ngOnInit(): void {
 
-    console.log(this.instancia);
+    // console.log(this.instancia);
 
     if (this.instancia.State.Code == 16) {
       this.isChecked = true;

@@ -43,29 +43,9 @@
                 </mat-menu>
             </div>
 
-
+            <!-- PERFILES -->
             <mat-accordion class="animated fadeIn">
-                <mat-expansion-panel *ngFor="let perfil of perfiles">
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>
-                            <mat-icon>{{ perfil.icon }}</mat-icon>
-                        </mat-panel-title>
-
-                        <mat-panel-description>
-                            {{ perfil.name | uppercase }}
-                        </mat-panel-description>
-
-                    </mat-expansion-panel-header>
-
-                    <mat-nav-list>
-                        <mat-list-item class="espaciado" *ngFor="let servicio of perfil.servicios" [routerLink]="servicio.ruta">
-                            <a matLine>{{ servicio.name }}</a>
-                            <span [matBadge]="servicio.total" matBadgeSize="small" matBadgeColor="warn"></span>
-                        </mat-list-item>
-                    </mat-nav-list>
-
-                </mat-expansion-panel>
-
+                    <app-perfil [perfil]="perfil" *ngFor="let perfil of perfiles"></app-perfil>
             </mat-accordion>
 
         </mat-sidenav>
